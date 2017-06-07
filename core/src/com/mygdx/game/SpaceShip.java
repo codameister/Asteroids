@@ -19,11 +19,14 @@ public class SpaceShip extends AnimatedSprite {
 	public static int columns = 2;
 	public float angle;
 	public int offset = 20;
+	public boolean looping = true;
+	private float xposoffset = 0;
+	private float yposoffset = 0;
 	
 	
 
 	public void draw(SpriteBatch spritebatch) {
-		super.draw(spritebatch, rotationoriginx, rotationoriginy, rows, columns, angle);
+		super.draw(spritebatch, rotationoriginx, rotationoriginy, rows, columns, angle, looping, xposoffset, yposoffset);
 	}
 
 	public SpaceShip(Sprite sprite) {

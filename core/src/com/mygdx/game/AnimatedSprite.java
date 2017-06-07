@@ -54,15 +54,15 @@ public abstract class AnimatedSprite {
 		}
 	}	
 	
-public void draw(SpriteBatch spriteBatch, float rotationoriginx, float rotationoriginy, int rows, int columns, float angle)
+public void draw(SpriteBatch spriteBatch, float rotationoriginx, float rotationoriginy, int rows, int columns, float angle, boolean looping, float xposoffset, float yposoffset)
 {
 	stateTime += Gdx.graphics.getDeltaTime();
 	timeSinceLastRotate += Gdx.graphics.getDeltaTime();
 	
 	
-	currentFrame = animation.getKeyFrame(stateTime, true);
+	currentFrame = animation.getKeyFrame(stateTime, looping);
 	
-	spriteBatch.draw(currentFrame, sprite.getX(), sprite.getY(), rotationoriginx, rotationoriginy, sprite.getWidth()/columns, sprite.getHeight()/columns, 1, 1, angle);
+	spriteBatch.draw(currentFrame, sprite.getX()-xposoffset, sprite.getY()-yposoffset, rotationoriginx, rotationoriginy, sprite.getWidth()/columns, sprite.getHeight()/columns, 1, 1, angle);
 
 }
 public void accelerate(double radians, float acceleration) {

@@ -20,6 +20,9 @@ private double radians;
 public float angle;
 public long missiletimer;
 public int offset = 0;
+public boolean looping = true;
+private float xposoffset = 0;
+private float yposoffset = 0;
 
 	public Missile(Sprite sprite, float angle){
 		super(sprite, tilewidth, tileheight, rows, columns);
@@ -34,7 +37,7 @@ public int offset = 0;
 	}
 	
 	public void draw(SpriteBatch spritebatch) {
-		super.draw(spritebatch, rotationoriginx, rotationoriginy, rows, columns, angle);
+		super.draw(spritebatch, rotationoriginx, rotationoriginy, rows, columns, angle, looping, xposoffset, yposoffset);
 		
 	}
 	

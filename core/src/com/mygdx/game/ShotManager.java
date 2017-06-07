@@ -14,12 +14,19 @@ import com.badlogic.gdx.math.Rectangle;
 public class ShotManager {
 	
 	public List<Missile> missiles = new ArrayList<Missile>();
+	public List<Explosion> explosions = new ArrayList<Explosion>();
 	private Texture missiletexture;
 	private Sprite missileSprite; 
 	private Missile missileAnimated;
 	private float waittime = 1;
 	private float timesincelastshot;
 	private boolean canattack;
+	ExplosionManager explosionmanager;
+	
+	public ShotManager(ExplosionManager explosionmanager)
+	{
+		this.explosionmanager = explosionmanager;
+	}
 	
 	public void attack(float angle, float xpos, float ypos) {
 		if (canattack)
@@ -80,10 +87,13 @@ public class ShotManager {
 				if (!removed)
 				{
 					if(Intersector.overlapConvexPolygons(asteroid.getBoundingBox(asteroid.angle, Asteroid.rows, Asteroid.columns, asteroid.rotationoriginx, asteroid.rotationoriginy, asteroid.offset), missile.getBoundingBox(missile.angle, Missile.rows, Missile.columns, missile.rotationoriginx, missile.rotationoriginy, missile.offset)))
-					{			
+					{		
+						explosionmanager.spawnexplosion(asteroid.sprite.getX(), asteroid.sprite.getY());
 						i.remove();
 						j.remove();
 						removed = true;
+						
+						
 					}	
 					
 					if(1000 < (System.currentTimeMillis() - missile.missiletimer))
@@ -91,14 +101,8 @@ public class ShotManager {
 						j.remove();
 						removed = true;
 					}
-				}
-				//if(Intersector.intersectRectangles(asteroid.getBoundingBox(2, 2), missile.getBoundingBox(4, 2), overlap))
-				
-					
+				}					
 			}	
-		
 		}
-		
-
 	}
 	}  

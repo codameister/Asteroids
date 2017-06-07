@@ -18,6 +18,9 @@ public class Asteroid extends AnimatedSprite {
 	public float angle = 0;
 	public int radius = 10;
 	public int offset = 0;
+	public boolean looping = true;
+	private float xposoffset = 0;
+	private float yposoffset = 0;
 
 	public Asteroid(Sprite sprite) {
 		super(sprite, tilewidth, tileheight, rows, columns);
@@ -29,7 +32,7 @@ public class Asteroid extends AnimatedSprite {
 	}
 	
 	public void draw(SpriteBatch spritebatch) {
-		super.draw(spritebatch, rotationoriginx, rotationoriginy, rows, columns, angle);
+		super.draw(spritebatch, rotationoriginx, rotationoriginy, rows, columns, angle, looping, xposoffset , yposoffset);
 		
 	}
 	

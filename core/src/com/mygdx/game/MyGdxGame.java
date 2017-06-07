@@ -14,6 +14,8 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.FillViewport;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
 
 public class MyGdxGame extends ApplicationAdapter {
 	SpriteBatch batch;
@@ -34,23 +36,25 @@ public class MyGdxGame extends ApplicationAdapter {
 	public void create () {
 		
 		batch = new SpriteBatch();
-		camera = new OrthographicCamera(1024,512);
+		camera = new OrthographicCamera();
 		camera.setToOrtho(false);
-		
-		viewport = new FillViewport(1024,512,camera);
-	      viewport.apply();
-		
-		
 		camera.update();
-		background = new Texture(Gdx.files.internal("1024by512.jpg"));
+
+		
+		viewport = new FillViewport(1024,768, camera);   
+	    viewport.apply(true);
+		
+		
+		background = new Texture(Gdx.files.internal("bg800400.png"));
 		background.setWrap(Texture.TextureWrap.ClampToEdge, Texture.TextureWrap.ClampToEdge);
 		Texture spaceshipTexture = new Texture(Gdx.files.internal("jetfighter.png"));
 		spaceshipSprite = new Sprite(spaceshipTexture);
 		spaceshipAnimated = new SpaceShip(spaceshipSprite);
 		spaceshipAnimated.setPosition(200, 200);
 		asteroidmanager = new AsteroidManager();
-		shotmanager = new ShotManager();
-		//explosionmanager = new ExplosionManager();
+		explosionmanager = new ExplosionManager();
+		shotmanager = new ShotManager(explosionmanager);
+		
 		
 	}
 	
@@ -67,6 +71,7 @@ public class MyGdxGame extends ApplicationAdapter {
 		spaceshipAnimated.draw(batch);
 		asteroidmanager.draw(batch);
 		shotmanager.draw(batch);
+		explosionmanager.draw(batch);
 		
 		if(gameisover)
 		{
@@ -77,6 +82,7 @@ public class MyGdxGame extends ApplicationAdapter {
 		
 		batch.end();
 		handleinput();
+		
 		
 		if (!gameisover)
 		{
@@ -90,7 +96,7 @@ public class MyGdxGame extends ApplicationAdapter {
 		{
 			
 			gameisover = true;
-			//explosionmanager.spawnexplosion(spaceshipAnimated.sprite.getX(), spaceshipAnimated.sprite.getY());
+			explosionmanager.spawnexplosion(spaceshipAnimated.sprite.getX(), spaceshipAnimated.sprite.getY());
 		}
 		
 		

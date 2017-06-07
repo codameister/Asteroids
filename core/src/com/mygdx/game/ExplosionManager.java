@@ -10,10 +10,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class ExplosionManager {
 
-	Texture explosionTexture;
-	Sprite explosionSprite;
-	Explosion explosionAnimated;
-	List<Explosion> explosions;
+	private Texture explosionTexture;
+	private Sprite explosionSprite;
+	private Explosion explosionAnimated;
+	private List<Explosion> explosions;
 	
 	public ExplosionManager()
 	{
@@ -22,7 +22,7 @@ public class ExplosionManager {
 	
 	 public void spawnexplosion(float xpos, float ypos)
 	 {
-		    explosionTexture = new Texture(Gdx.files.internal("explosion.jpg"));
+		    explosionTexture = new Texture(Gdx.files.internal("explosion1.png"));
 			explosionSprite = new Sprite(explosionTexture);
 			explosionAnimated = new Explosion(explosionSprite);
 			explosionAnimated.setPosition(xpos, ypos);	
