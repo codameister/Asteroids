@@ -20,18 +20,19 @@ public class ShotManager {
 	private Missile missileAnimated;
 	private float waittime = 1;
 	private float timesincelastshot;
-	private boolean canattack;
+	private boolean canattack = true;
 	ExplosionManager explosionmanager;
 	
 	public ShotManager(ExplosionManager explosionmanager)
 	{
 		this.explosionmanager = explosionmanager;
+		
 	}
 	
 	public void attack(float angle, float xpos, float ypos) {
 		if (canattack)
 			{
-			missiletexture = new Texture(Gdx.files.internal("missilespritesheet200by20up.png"));
+			missiletexture = new Texture(Gdx.files.internal("missile.png"));
 			missileSprite = new Sprite(missiletexture);
 			missileAnimated = new Missile(missileSprite, angle);
 			missileAnimated.setPosition(xpos+35, ypos);
@@ -57,7 +58,6 @@ public class ShotManager {
 			missile.move();
 		}
 		timesincelastshot += Gdx.graphics.getDeltaTime();
-		
 		spawncheck();
 	}
 
@@ -91,9 +91,7 @@ public class ShotManager {
 						explosionmanager.spawnexplosion(asteroid.sprite.getX(), asteroid.sprite.getY());
 						i.remove();
 						j.remove();
-						removed = true;
-						
-						
+						removed = true;			
 					}	
 					
 					if(1000 < (System.currentTimeMillis() - missile.missiletimer))

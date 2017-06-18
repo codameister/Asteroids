@@ -44,6 +44,9 @@ private float yposoffset = 0;
 	@Override
 	void deccelerate() {}
 	
+	@Override
+	public void screenwrap() {}
+	
 }
 
 

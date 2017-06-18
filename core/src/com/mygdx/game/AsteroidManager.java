@@ -85,6 +85,20 @@ public boolean asteroidTouches(List<Asteroid> asteroids, SpaceShip spaceship) {
 	return false;
 }
 
+public void blackholetouches(ExplosionManager explosionmanager){
+	Iterator<Asteroid> k = asteroids.iterator();
+	while(k.hasNext())
+	{
+		Asteroid asteroid = k.next();
+		if(asteroid.blackhole())
+		{
+			explosionmanager.spawnexplosion(asteroid.sprite.getX(), asteroid.sprite.getY());
+			k.remove();
+		}
+	}
+	 
+}
+
 public void dispose() 
 {
 	asteroids.clear();

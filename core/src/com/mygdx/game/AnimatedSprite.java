@@ -18,23 +18,19 @@ public abstract class AnimatedSprite {
 	private Animation<TextureRegion> animation;
 	private float stateTime;
 	private TextureRegion currentFrame;
-	//protected float angle;
 	protected Vector2 velocity = new Vector2();
 	protected float timeSinceLastRotate = 0; 
-
-	
-	private Vector2 gravitysource = new Vector2(500, 200);
+	private Vector2 gravitysource = new Vector2(480, 240);
 	private int gravitymagnitude = 20000;
 	private Vector2 position = new Vector2();
 	private Vector2 gravdirection = new Vector2();
-	private Vector2 gravvector = new Vector2();
+	private Vector2 gravvector = new Vector2(100,100);
 	private float gravstrength;
 	private Vector2 gravacc = new Vector2();
 
 	
 	public AnimatedSprite(Sprite sprite, int tilewidth, int tileheight, int rows , int columns)
 	{
-			
 		{
 			this.sprite = sprite;
 			Texture texture = sprite.getTexture();
@@ -48,7 +44,6 @@ public abstract class AnimatedSprite {
 					frames[index++] = temp[i][j];
 				}
 			}
-			
 			animation = new Animation<TextureRegion>(0.1f, frames);
 			stateTime = 0f;
 		}
@@ -57,49 +52,42 @@ public abstract class AnimatedSprite {
 public void draw(SpriteBatch spriteBatch, float rotationoriginx, float rotationoriginy, int rows, int columns, float angle, boolean looping, float xposoffset, float yposoffset)
 {
 	stateTime += Gdx.graphics.getDeltaTime();
-	timeSinceLastRotate += Gdx.graphics.getDeltaTime();
-	
-	
+	timeSinceLastRotate += Gdx.graphics.getDeltaTime();	
 	currentFrame = animation.getKeyFrame(stateTime, looping);
-	
 	spriteBatch.draw(currentFrame, sprite.getX()-xposoffset, sprite.getY()-yposoffset, rotationoriginx, rotationoriginy, sprite.getWidth()/columns, sprite.getHeight()/columns, 1, 1, angle);
-
 }
+
 public void accelerate(double radians, float acceleration) {
 	
 	velocity.x += (acceleration * Math.sin(-radians));
 	velocity.y += (acceleration * Math.cos(radians));	
-
 }
 
 public void setPosition(float x, float y)
 {
+	sprite.setPosition(x, y);
+}
 
-sprite.setPosition(x, y);
-
+public boolean blackhole()
+{
+	if (gravvector.len() < 30)
+	{
+		return true;
+	}
+return false;
 }
 
 public void move() {
 	
-	
 	 position.x = (sprite.getX());
 	 position.y = (sprite.getY());
 			 
-	 gravitycalc();
-	 
-	
-	 if (gravvector.len() < 40)
-	 {
-		 gravacc.x = 0;
-		 gravacc.y = 0;
-	 }
-	 
+	 gravitycalc();	 
 	 screenwrap();
 
 	float xMovement = ((velocity.x * Gdx.graphics.getDeltaTime()) + (gravacc.x * Gdx.graphics.getDeltaTime()));
 	float yMovement = ((velocity.y * Gdx.graphics.getDeltaTime()) + (gravacc.y * Gdx.graphics.getDeltaTime()));
 	 
-	
 	sprite.setPosition(sprite.getX() + xMovement, sprite.getY() + yMovement);
 	
 	deccelerate();
@@ -117,7 +105,7 @@ private void gravitycalc() {
 }
 
 
-private void screenwrap() {
+public void screenwrap() {
 	if (position.x < -80)
 	 {
 		 sprite.setPosition(880, (sprite.getY()));
@@ -138,13 +126,11 @@ private void screenwrap() {
 }
 
 public Polygon getBoundingBox(float angle, int rows, int columns, float rotationoriginx, float rotationoriginy, int offset) {
-
-	//return new Rectangle(sprite.getX(), sprite.getY(), (sprite.getWidth()/columns), (sprite.getHeight()/rows));	
+	
 	Polygon polygon = new Polygon(new float []{0, 0, (sprite.getWidth()/columns)-offset,0, (sprite.getWidth()/columns)-offset, (sprite.getHeight()/rows)-offset, 0, (sprite.getHeight()/rows)-offset});
 	polygon.setPosition(sprite.getX()+(offset/2), sprite.getY()+(offset/2));
 	polygon.setRotation(angle);
 	polygon.setOrigin(rotationoriginx-(offset/2), rotationoriginy-(offset/2));
 	return polygon;
 }
-
 }
