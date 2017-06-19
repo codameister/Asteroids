@@ -6,9 +6,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Polygon;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 public abstract class AnimatedSprite {
@@ -85,18 +83,18 @@ public void move() {
 	 gravitycalc();	 
 	 screenwrap();
 
-	float xMovement = ((velocity.x * Gdx.graphics.getDeltaTime()) + (gravacc.x * Gdx.graphics.getDeltaTime()));
-	float yMovement = ((velocity.y * Gdx.graphics.getDeltaTime()) + (gravacc.y * Gdx.graphics.getDeltaTime()));
+	 float xMovement = ((velocity.x * Gdx.graphics.getDeltaTime()) + (gravacc.x * Gdx.graphics.getDeltaTime()));
+	 float yMovement = ((velocity.y * Gdx.graphics.getDeltaTime()) + (gravacc.y * Gdx.graphics.getDeltaTime()));
 	 
-	sprite.setPosition(sprite.getX() + xMovement, sprite.getY() + yMovement);
+	 sprite.setPosition(sprite.getX() + xMovement, sprite.getY() + yMovement);
 	
-	deccelerate();
+	 deccelerate();
 }
 
 abstract void deccelerate();
 
 private void gravitycalc() {
-	gravvector.x = gravitysource.x - position.x;
+	 gravvector.x = gravitysource.x - position.x;
 	 gravvector.y = gravitysource.y - position.y;
 	 gravdirection = gravvector.cpy();
 	 gravdirection = gravdirection.nor();

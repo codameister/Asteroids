@@ -1,10 +1,7 @@
 package com.mygdx.game;
 
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 
 public class Asteroid extends AnimatedSprite {
@@ -27,17 +24,13 @@ public class Asteroid extends AnimatedSprite {
 				  
 			velocity.x = (float)(Math.random() * 400)-200;
 			velocity.y = (float)(Math.random() * 400)-200;	
-			//velocity.x = 0;
-			//velocity.y = 0;
 	}
 	
 	public void draw(SpriteBatch spritebatch) {
-		super.draw(spritebatch, rotationoriginx, rotationoriginy, rows, columns, angle, looping, xposoffset , yposoffset);
-		
+		super.draw(spritebatch, rotationoriginx, rotationoriginy, rows, columns, angle, looping, xposoffset , yposoffset);	
 	}
 	
 	
 	@Override
 	void deccelerate() {}
-	
 }

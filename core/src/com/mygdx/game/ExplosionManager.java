@@ -30,10 +30,10 @@ public class ExplosionManager {
 	 }
 	 
 	 public void draw(SpriteBatch batch)
+	{
+		for(Explosion explosion : explosions)
 		{
-			for(Explosion explosion : explosions)
-			{
-				explosion.draw(batch);
-			}	
-		}
+			explosion.draw(batch);
+		}	
+	}
 }

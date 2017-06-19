@@ -3,13 +3,11 @@ package com.mygdx.game;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Intersector;
-import com.badlogic.gdx.math.Rectangle;
 
 public class ShotManager {
 	
@@ -29,17 +27,18 @@ public class ShotManager {
 		
 	}
 	
-	public void attack(float angle, float xpos, float ypos) {
-		if (canattack)
-			{
-			missiletexture = new Texture(Gdx.files.internal("missile.png"));
-			missileSprite = new Sprite(missiletexture);
-			missileAnimated = new Missile(missileSprite, angle);
-			missileAnimated.setPosition(xpos+35, ypos);
-			missiles.add(missileAnimated);
-			canattack = false;
-			}
+	public void attack(float angle, float xpos, float ypos)
+	{
+	if (canattack)
+		{
+		missiletexture = new Texture(Gdx.files.internal("missile.png"));
+		missileSprite = new Sprite(missiletexture);
+		missileAnimated = new Missile(missileSprite, angle);
+		missileAnimated.setPosition(xpos+35, ypos);
+		missiles.add(missileAnimated);
+		canattack = false;
 		}
+	}
 
 	public void draw(SpriteBatch batch)
 	{
@@ -61,7 +60,8 @@ public class ShotManager {
 		spawncheck();
 	}
 
-	private void spawncheck() {
+	private void spawncheck()
+	{
 		if (waittime < timesincelastshot)
 		{
 			canattack = true;
@@ -73,7 +73,8 @@ public class ShotManager {
 		missiles.clear();	
 	}
 	
-	public void asteroidHit(List<Asteroid> asteroids) {
+	public void asteroidHit(List<Asteroid> asteroids) 
+	{
 		Iterator<Asteroid> i = asteroids.iterator();
 		Iterator<Missile> j = missiles.iterator();
 		boolean removed;

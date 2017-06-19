@@ -1,9 +1,5 @@
 package com.mygdx.game;
 
-import java.util.Iterator;
-import java.util.List;
-import java.util.Timer;
-
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -14,8 +10,6 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.FillViewport;
-import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.badlogic.gdx.utils.viewport.StretchViewport;
 
 public class MyGdxGame extends ApplicationAdapter {
 	SpriteBatch batch;
@@ -26,7 +20,6 @@ public class MyGdxGame extends ApplicationAdapter {
 	public SpaceShip spaceshipAnimated;
 	FillViewport viewport;
 	AsteroidManager asteroidmanager;
-	CollisionManager collisionmanager;
 	public boolean gameisover = false;
 	ShotManager shotmanager;
 	ExplosionManager explosionmanager;

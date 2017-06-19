@@ -1,8 +1,5 @@
 package com.mygdx.game;
 
-import java.util.Iterator;
-import java.util.List;
-
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -50,11 +47,8 @@ public class SpaceShip extends AnimatedSprite {
 				{
 					angle += 5;
 				}
-		
 		timeSinceLastRotate = 0f; 
 		radians = Math.toRadians(angle);
-		
-	
 		}	
 	}
 
@@ -87,8 +81,7 @@ public class SpaceShip extends AnimatedSprite {
 				if (velocity.x < 0)
 				{
 					velocity.x = 0;
-				}
-				
+				}	
 		}
 		
 		if (velocity.x < 0)
@@ -97,8 +90,7 @@ public class SpaceShip extends AnimatedSprite {
 				if (velocity.x > 0)
 				{
 					velocity.x = 0;
-				}
-				
+				}	
 		}
 	
 		if (velocity.y > 0)
@@ -107,8 +99,7 @@ public class SpaceShip extends AnimatedSprite {
 				if (velocity.y < 0)
 				{
 					velocity.y= 0;
-				}
-				
+				}		
 		}
 		if (velocity.y < 0)
 		{
@@ -116,12 +107,7 @@ public class SpaceShip extends AnimatedSprite {
 				if (velocity.y > 0)
 				{
 					velocity.y = 0;
-				}
-				
+				}	
 		}
 	}
-
-
-	
-	
 }

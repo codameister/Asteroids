@@ -7,8 +7,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class Missile extends AnimatedSprite {
 	
-
-//private double angle;
 private float speed = 800;
 public float rotationoriginx = 5;
 public float rotationoriginy = 50;
